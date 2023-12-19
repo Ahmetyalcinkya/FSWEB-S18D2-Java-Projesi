@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface FruitRepository extends JpaRepository<Fruit, Integer> {
 
-    @Query("SELECT f FROM Fruit f WHERE f.fruitType = :fruitType")
+    @Query("SELECT f FROM Fruit f WHERE f.fruitType = :fruitType") // native
     List<Fruit> findByFruitType(String fruitType);
 
     @Query(value = "SELECT f.name,f.price,f.fruit_type FROM fsweb.fruit AS f ORDER BY f.price DESC",
             nativeQuery = true)
     List<Fruit> sortByFruitPrice();
 
-    @Query("SELECT f FROM Fruit f WHERE ILIKE %:name%")
+    @Query("SELECT f FROM Fruit f WHERE f.name ILIKE %:name%")
     List<Fruit> searchByFruitName(String name);
 }

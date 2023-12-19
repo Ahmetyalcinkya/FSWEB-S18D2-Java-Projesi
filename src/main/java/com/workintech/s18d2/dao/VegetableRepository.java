@@ -10,6 +10,6 @@ public interface VegetableRepository extends JpaRepository<Vegetable, Integer> {
 
     @Query("SELECT v FROM Vegetable v ORDER BY v.price desc")
     List<Vegetable> sortByVegetablePrice();
-    @Query("SELECT f FROM Fruit f WHERE ILIKE %:name%")
+    @Query("SELECT f FROM Fruit f WHERE f.name ILIKE %:name%")
     List<Vegetable> searchByVegetableName(String name);
 }
